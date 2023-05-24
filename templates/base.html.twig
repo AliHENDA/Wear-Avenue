@@ -17,29 +17,20 @@
                     </div>
                     <nav>
                         <ul id="MenuItems">
-                            <li><a href=""></a> Home</li>
-                            <li><a href=""></a> Women's</li>
-                            <li><a href=""></a> Men's</li>
-                            <li><a href=""></a> Kid's</li>
-                            <li><a href=""></a> Contact</li>
-                            <li><a href=""></a> Account</li>
+                            <li><a href="{{ path('app_front_main_home')}}">Home</li></a>
+                            <a href="{{ path('app_front_category_women')}}"><li>Women's</li></a> 
+                            <a href="{{ path('app_front_category_men')}}"><li>Men's</li></a>
+                            <a href="{{ path('app_front_category_kids')}}"><li>Kid's</li></a>
+                            <a href=""><li>Contact</li></a>
+                            <a href=""><li>Account</li></a>
                         </ul>
                         <img src="{{ asset('assets/img/shopping-bag.png') }}" id="cart" alt="">
                         <img src="{{ asset('assets/img/menu-icon.png') }}" class="menu-icon" onclick="menutoggle()">
                     </nav>
                 </div>
-                <div class="row">
-                    <div class="col-2">
-                        <h1>Sapes Avenue</h1>
-                        <p>Success isn't always about greatness. It's about consistency. Consistent <br> hardwork gains success. Greatness will come</p>
-                        <a href="" class="btn">Purshase Now &#10095</a>
-                    </div>
-                    <div class="col-2">
-                        <img src="{{ asset('assets/img/left-banner-image.jpg') }}" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
+
+    {% block banner %}{% endblock %}
+
     <main>
         {% block main %}{% endblock %}
     </main>
