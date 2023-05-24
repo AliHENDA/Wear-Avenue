@@ -3,13 +3,25 @@
 {% block title %}Hello CategoryController!{% endblock %}
 
 {% block main %}
-
+</div>
+</div>
 <div class="small-container">
 
-            <div class="row">
+            <div class="row row-2">
+                <h2>All Categories</h2>
+                <select name="" id="">
+                    <option value="">Defaut Shorting</option>
+                    <option value="">Sort by price</option>
+                    <option value="">Sort by popularity</option>
+                    <option value="">Sort by rating</option>
+                    <option value="">Sort by sale</option>
+                </select>
+            </div>
+
+            <div class="display">
             {% for category in categories %}     
                 <div class="col-4">
-                    <img src= "{{ category.picture }}" alt="">
+                    <img src= "{{ asset('assets/img/women-03.jpg') }}" alt="">
                     <h4>{{ category.name }}</h4>
                 </div>
             {% endfor %}
