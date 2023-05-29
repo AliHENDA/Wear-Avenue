@@ -468,7 +468,7 @@ table{
     flex-wrap: wrap;
 }
 
-.th{
+th{
     text-align: left;
     padding: 5px;
     color: white;

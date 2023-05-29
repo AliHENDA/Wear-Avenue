@@ -24,13 +24,14 @@
                             <a href=""><li>Contact</li></a>
                             <a href=""><li>Account</li></a>
                         </ul>
-                        <img src="{{ asset('assets/img/shopping-bag.png') }}" id="cart" alt="">
+                        <a href="{{ path('app_cart')}}"><img src="{{ asset('assets/img/shopping-bag.png') }}" id="cart" alt=""></a>
                         <img src="{{ asset('assets/img/menu-icon.png') }}" class="menu-icon" onclick="menutoggle()">
                     </nav>
                 </div>
 
     {% block banner %}{% endblock %}
-
+            </div>
+        </div>
     <main>
         {% block main %}{% endblock %}
     </main>

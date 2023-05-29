@@ -37,7 +37,6 @@ class AppFixtures extends Fixture
             $category->setName($faker->unique()->productCategory());
             $category->setPicture("{{ asset('assets/img/women-03.jpg') }}");
             $category->setSubtitle('Lorem, ipsum dolor sit amet consecteturs.');
-            $category->setGender($faker->randomElement(['Women', 'Men', 'Kids', 'Unisex']));
             $category->setSlug($this->slugger->slug($category->getName())->lower());
 
             $categoriesList[] = $category;

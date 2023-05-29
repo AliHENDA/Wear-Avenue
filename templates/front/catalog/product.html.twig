@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block main %}
+    <div class="small-container single-product">
+            <div class="row">
+                <div class="col-2">
+                    <img src="{{ asset('assets/img/kid-01.jpg') }}" width="100%" alt="" id="productImg">
+                    <div class="small-img-row">
+                        <div class="small-img-col">
+                            <img src="{{ asset('assets/img/kid-01.jpg') }}" alt="" class="small-img">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="{{ asset('assets/img/kid-03.jpg') }}" alt="" class="small-img">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="{{ asset('assets/img/kid-03.jpg') }}" alt="" class="small-img">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <p>Lorem / Ipsum</p>
+                    <h1>{{ product.name }}</h1>
+                    <div class="rating">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <h4>{{(product.price / 100)|number_format(2)}}</h4>
+                    <select name="" id="">
+                    <option value="">Select</option>
+                        {% for inventory in product.inventories %}
+                            <option value=" {{ inventory.id }}">{{ inventory.size }}</option>
+                            <input type="number" name="" id="" value="1">
+                            <a href="{{ path('app_cart_add', {id:inventory.id} )}}" class="btn">Add to cart &#10095</a>
+                        {% endfor %}
+                        <h3>Description</h3>
+                        <br>
+                        <p>{{ product.description }}</p>
+                    </select>
+                </div>
+            </div>
+        </div>
+{% endblock %}

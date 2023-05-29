@@ -1,14 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CategoryController!{% endblock %}
+{% block title %}{{ name}} - Sapes Avenue{% endblock %}
 
 {% block main %}
-</div>
-</div>
 <div class="small-container">
 
             <div class="row row-2">
-                <h2>All Categories</h2>
+                <h2>All Products </h2>
                 <select name="" id="">
                     <option value="">Defaut Shorting</option>
                     <option value="">Sort by price</option>
@@ -19,12 +17,13 @@
             </div>
 
             <div class="display">
-            {% for category in categories %}     
+            {% for product in products %}     
                 <div class="col-4">
-                    <img src= "{{ asset('assets/img/women-03.jpg') }}" alt="">
-                    <h4>{{ category.name }}</h4>
+                    <a href="{{ path('app_front_product', {slug:product.slug}) }}"><img src= "{{ asset('assets/img/women-01.jpg') }}" alt=""></a>
+                    <h4>{{ product.name }}</h4>
                 </div>
             {% endfor %}
         </div>
+    </div>
 
 {% endblock %}

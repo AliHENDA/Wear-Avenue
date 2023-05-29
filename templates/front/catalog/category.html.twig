@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Categories - Sapes Avenue{% endblock %}
+
+{% block main %}
+<div class="small-container">
+
+            <div class="row row-2">
+                <h2>All Categories</h2>
+                <select name="" id="">
+                    <option value="">Defaut Shorting</option>
+                    <option value="">Sort by price</option>
+                    <option value="">Sort by popularity</option>
+                    <option value="">Sort by rating</option>
+                    <option value="">Sort by sale</option>
+                </select>
+            </div>
+
+            <div class="display">
+            {% for category in categories %}     
+                <div class="col-4">
+                {% if app.request.get('_route') == "app_front_category_women" %}
+                    <a href="{{ path('app_front_products_by_category_women', {slug: category.slug})}}"><img src= "{{ asset('assets/img/pexels-mnz-1598507 (1).jpg') }}" alt=""></a>
+                {% elseif app.request.get('_route') == "app_front_category_men" %}
+                    <a href="{{ path('app_front_products_by_category_men', {slug: category.slug})}}"><img src= "{{ asset('assets/img/pexels-mnz-1598507 (1).jpg') }}" alt=""></a>
+                {% else %}
+                    <a href="{{ path('app_front_products_by_category_kids', {slug: category.slug})}}"><img src= "{{ asset('assets/img/pexels-mnz-1598507 (1).jpg') }}" alt=""></a>
+                {% endif %}
+                    <h4>{{ category.name }}</h4>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
