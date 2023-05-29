@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230524174502 extends AbstractMigration
+final class Version20230529161147 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,12 @@ final class Version20230524174502 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE product ADD best_sellers_order SMALLINT DEFAULT NULL');
+        $this->addSql('ALTER TABLE cart DROP size');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE product DROP best_sellers_order');
+        $this->addSql('ALTER TABLE cart ADD size VARCHAR(8) NOT NULL');
     }
 }

@@ -281,26 +281,4 @@ class Product
     {
         return $this->carts;
     }
-
-    public function addCart(Cart $cart): self
-    {
-        if (!$this->carts->contains($cart)) {
-            $this->carts[] = $cart;
-            $cart->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCart(Cart $cart): self
-    {
-        if ($this->carts->removeElement($cart)) {
-            // set the owning side to null (unless already changed)
-            if ($cart->getProduct() === $this) {
-                $cart->setProduct(null);
-            }
-        }
-
-        return $this;
-    }
 }

@@ -22,7 +22,12 @@
                             <a href="{{ path('app_front_category_men')}}"><li>Men's</li></a>
                             <a href="{{ path('app_front_category_kids')}}"><li>Kid's</li></a>
                             <a href=""><li>Contact</li></a>
-                            <a href=""><li>Account</li></a>
+                            {% if app.user  %}
+                            <a href="">Hello {{ app.user.firstname }}</small></a> | <a href="{{ path('app_logout')}}">Logout </a>
+                            {% else %}
+                            <a href="{{ path('app_login')}}">Sign In</a> | <a href="{{ path('app_front_register' )}}">Sign Up </a>
+                            {% endif %}
+
                         </ul>
                         <a href="{{ path('app_cart')}}"><img src="{{ asset('assets/img/shopping-bag.png') }}" id="cart" alt=""></a>
                         <img src="{{ asset('assets/img/menu-icon.png') }}" class="menu-icon" onclick="menutoggle()">

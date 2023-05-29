@@ -10,37 +10,51 @@
                     <th>Quantity</th>
                     <th>Subtotal</th>
                 </tr>
-                <tr>
+                {% set total = 0 %}
+                {% for item in cart %}
+                <tr>              
                     <td>
+                    {% set product = item.inventoryItem.product %}
+                    {% set size =  item.inventoryItem.size %}
                         <div class="cart-info">
-                            <img src="assets/img/kid-01.jpg" alt="">
+                            <img src="{{ product.picture }}" alt="">
                             <div>
-                                <p>Lorem, ipsum dolor.</p>
-                                <small>Price: 50€</small>
+                                <p>{{ product.name }}</p>
+                                <small>Unit price : {{ (product.price / 100)|number_format(2) }} €</small>
+                                <br>
+                                <small>Size : {{ size }}</small>
                             </div>
                         </div>
                     </td>
-                    <td>
-                    <div class="btn"><a href="">-</a></div>
-                    <input value="" type="text">
-                    <div class="btn"><a href="">+</a></div></td>
-                    <td>50.00€</td>
+                    <td class="td">
+                    <form action="{{ path('app_cart_delete', {id:item.inventoryItem.id}) }}" method="POST">
+                    <button class="btn">-</button>
+                    </form>
+                    <input type="text" value="{{ item.quantity }}" disabled>
+                    <form action="{{ path('app_cart_add', {id:item.inventoryItem.id}) }}" method="POST">
+                    <button class="btn">+</button>
+                    </td>
+                    </form>
+                    <td>{{(product.price * item.quantity / 100)|number_format(2)}}</td>
+
+                    {% set total = total + (product.price * item.quantity / 100) %}               
                 </tr>
+                {% endfor %}
             </table>
 
             <div class="total-price">
                 <table>
                     <tr>
                         <td>Subtotal</td>
-                        <td>150.00€</td>
+                        <td>{{ (total / 1.2)|number_format(2) }}€</td>
                     </tr>
                     <tr>
                         <td>Tax</td>
-                        <td>30.00€</td>
+                        <td>{{ (total - (total / 1.2))|number_format(2) }}€</td>
                     </tr>
                     <tr>
                         <td>Total</td>
-                        <td>180.00€</td>
+                        <td>{{ total|number_format(2) }}€</td>
                     </tr>
                     
                 </table>

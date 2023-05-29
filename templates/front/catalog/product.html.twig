@@ -33,7 +33,9 @@
                         {% for inventory in product.inventories %}
                             <option value=" {{ inventory.id }}">{{ inventory.size }}</option>
                             <input type="number" name="" id="" value="1">
-                            <a href="{{ path('app_cart_add', {id:inventory.id} )}}" class="btn">Add to cart &#10095</a>
+                            <form action="{{ path('app_cart_add', {id:inventory.id} )}}" method="POST">
+                            <button class="btn">Add to cart &#10095</button>
+                            </form>
                         {% endfor %}
                         <h3>Description</h3>
                         <br>

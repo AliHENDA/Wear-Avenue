@@ -235,6 +235,10 @@ small{
 
 /* footer */
 
+footer{
+    bottom: 0;
+}
+
 .footer{
     background: #000;
     color: #8a8a8a;
@@ -469,7 +473,7 @@ table{
 }
 
 th{
-    text-align: left;
+    text-align: center;
     padding: 5px;
     color: white;
     background: black;
@@ -486,8 +490,8 @@ td a {
 }
 
 td img{
-    width: 80Px;
-    height: 80p;
+    width: 80px;
+    height: 80px;
     margin-right: 10px;
 }
 
@@ -499,7 +503,7 @@ td img{
 .total-price table{
     border-top: 2px solid #000;
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
 }
 
 td:last-child{
@@ -595,3 +599,16 @@ form a{
     display: flex;
     flex-wrap: wrap;
 }
+
+.td {
+    display: flex;
+    justify-content: space-around;
+}
+
+.td input{
+    text-align: center;
+    width: 40px;
+    height: 50px;
+}
+
+
