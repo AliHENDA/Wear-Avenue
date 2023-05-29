@@ -23,7 +23,7 @@ class CartController extends AbstractController
             $user = $this->getUser();
             $cart = $user->getCarts();
         } else {
-            $cart = null;
+        $cart = null;
         }
 
         return $this->render('cart/index.html.twig', [
