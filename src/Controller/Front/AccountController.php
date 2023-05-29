@@ -2,6 +2,7 @@
 
 namespace App\Controller\Front;
 
+use App\Form\ChangePasswordType;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,7 @@ class AccountController extends AbstractController
     }
 
     /**
-     * @Route("/mon-compte/modifier-mot-de-passe", name="app_front_account_password")
+     * @Route("/my-account/change-my-password", name="app_front_account_password")
      */
     public function edit(Request $request, UserPasswordHasherInterface $passwordHasher, UserRepository $userRepository): Response
     {   
@@ -46,7 +47,7 @@ class AccountController extends AbstractController
                 $userRepository->add($user, true);
                 $message = "Votre message a été mis à jour";
 
-                return $this->redirectToRoute('app_account');
+                return $this->redirectToRoute('app_front_account');
 ;           } else {
                 $message = "Votre mot de passe actuel est incorrect";
             }   
