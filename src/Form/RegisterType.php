@@ -39,6 +39,7 @@ class RegisterType extends AbstractType
                 'type' => PasswordType::class,
                 'invalid_message' => "Passwords don't match",
                 'first_options'  => [
+                    'label' => 'Password',
                     'attr' => [
                         'placeholder' => 'Please enter your password'
                     ]

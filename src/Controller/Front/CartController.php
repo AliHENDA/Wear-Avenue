@@ -26,7 +26,7 @@ class CartController extends AbstractController
         $cart = null;
         }
 
-        return $this->render('cart/index.html.twig', [
+        return $this->render('front/cart/index.html.twig', [
             'cart' => $cart,
         ]);
     }

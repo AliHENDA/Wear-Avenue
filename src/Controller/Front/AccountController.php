@@ -45,11 +45,11 @@ class AccountController extends AbstractController
                 $user->setPassword($hashedPassword);
 
                 $userRepository->add($user, true);
-                $message = "Votre message a été mis à jour";
+                $message = "Your password has been updated";
 
                 return $this->redirectToRoute('app_front_account');
 ;           } else {
-                $message = "Votre mot de passe actuel est incorrect";
+                $message = "Your current password is incorrect";
             }   
             
         }

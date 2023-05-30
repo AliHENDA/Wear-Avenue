@@ -19,7 +19,7 @@ class OrderType extends AbstractType
             ->add('addresses', EntityType::class, [
                 'class'=> Address::class,
                 'required' => true,
-                'label' => 'Choisissez votre adresse de livraison',
+                'label' => 'Choose your delivery address',
                 'choices' => $user->getAddresses(),
                 'multiple' => false,
                 'expanded' => true
@@ -27,14 +27,14 @@ class OrderType extends AbstractType
             ->add('carriers', EntityType::class, [
                 'class'=> Carrier::class,
                 'required' => true,
-                'label' => 'Choisissez votre transporteur',
+                'label' => 'Choose your carrier',
                 'multiple' => false,
                 'expanded' => true
             ])
             ->add('submit', SubmitType::class, [
-                'label' => "Valider ma commande",
+                'label' => "Purshase Now",
                 'attr' => [
-                    'class' => 'btn btn-success btn-block'
+                    'class' => 'btn'
                 ]
             ])
         ;

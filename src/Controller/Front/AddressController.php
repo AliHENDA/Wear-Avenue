@@ -39,11 +39,11 @@ class AddressController extends AbstractController
             $address->setUser($this->getUser());
             $addressRepository->add($address, true);
 
-        //    if($cart->getCart() == true) {
-        //        return $this->redirectToRoute('app_order');
-        //    } else {
-        //        return $this->redirectToRoute('app_front_address');
-        //    }
+        if($this->getUser()->getCarts() == true) {
+            return $this->redirectToRoute('app_front_order');
+        } else {
+            return $this->redirectToRoute('app_front_address');
+        }
         }
         return $this->render('front/address/add.html.twig', [
             'address' => $address,

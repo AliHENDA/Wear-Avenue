@@ -3,14 +3,15 @@
 {% block title %}Mon Compte{% endblock %}
 
 {% block main %}
-<h1>Mon compte</h1>
+<div class="small-container">
+    <h1>My account</h1>
 
-Bienvenue {{ app.user.firstname }} dans votre compte <br>
-C'est dans cet espace que vous allez pouvoir gérer toutes vos informations personnelles.
-<hr>
+    Welcome {{ app.user.firstname }} in your account <br>
+    <hr>
 
-<a href="{{ path('app_front_account_password')}}">Modifier mon mot de passe</a><br>
-<a href="{{ path('app_front_address')}}">Gérer mes adresses</a><br>
-Mes commande <br>
+    <a href="{{ path('app_front_account_password')}}">Change my password</a><br>
+    <a href="{{ path('app_front_address')}}">My addresses</a><br>
+    My orders<br>
+</div>
 
 {% endblock %}

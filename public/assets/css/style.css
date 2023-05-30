@@ -607,4 +607,10 @@ form a{
     height: 50px;
 }
 
+.recap{
+    display: flex;
+    flex-direction: column;
+}
+
+
 
