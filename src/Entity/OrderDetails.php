@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OrderDetailsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,10 +35,21 @@ class OrderDetails
     private $size;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="orderDetails")
+     * @ORM\Column(type="float")
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $total;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="orderDetails", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $myOrder;
+
 
     public function getId(): ?int
     {
@@ -79,6 +92,30 @@ class OrderDetails
         return $this;
     }
 
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+
+    public function setTotal(float $total): self
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
     public function getMyOrder(): ?Order
     {
         return $this->myOrder;
@@ -90,4 +127,5 @@ class OrderDetails
 
         return $this;
     }
+
 }

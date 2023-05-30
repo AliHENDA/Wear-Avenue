@@ -35,7 +35,6 @@
         <div class="order-summary">
             {% set total = 0 %}
             {% for item in cart %}
-
             {% set product = item.inventoryItem.product %}
             {% set size =  item.inventoryItem.size %}
                 <div class="cart-info">
@@ -64,7 +63,7 @@
         <b>TVA : {{ totalTTC - totalHT }} €</b><br>
         <b>Total TTC : {{ totalTTC }} €</b><b
     </div>
-        <a href="" class="btn" id="checkout-button"><strong>Payer {{ totalTTC }} €</strong> </a>
+        <a href="{{ path('app_stripe', {'reference':reference} )}}" class="btn" id="checkout-button"><strong>Payer {{ totalTTC }} €</strong> </a>
     </div>
 
 </div>

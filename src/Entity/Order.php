@@ -42,16 +42,6 @@ class Order
     private $deliveryAddress;
 
     /**
-     * @ORM\OneToMany(targetEntity=OrderDetails::class, mappedBy="myOrder")
-     */
-    private $orderDetails;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $total;
-
-    /**
      * @ORM\Column(type="datetime_immutable")
      */
     private $createdAt;
@@ -61,10 +51,26 @@ class Order
      */
     private $reference;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $stripe_session_id;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $state;
+
+    /**
+     * @ORM\OneToMany(targetEntity=OrderDetails::class, mappedBy="myOrder", orphanRemoval=true, cascade={"persist"})
+     */
+    private $orderDetails;
+
     public function __construct()
     {
-        $this->orderDetails = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
+        $this->state = 0;
+        $this->orderDetails = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -120,6 +126,54 @@ class Order
         return $this;
     }
 
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getStripeSessionId(): ?string
+    {
+        return $this->stripe_session_id;
+    }
+
+    public function setStripeSessionId(?string $stripe_session_id): self
+    {
+        $this->stripe_session_id = $stripe_session_id;
+
+        return $this;
+    }
+
+    public function isState(): ?bool
+    {
+        return $this->state;
+    }
+
+    public function setState(?bool $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, OrderDetails>
      */
@@ -146,42 +200,6 @@ class Order
                 $orderDetail->setMyOrder(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getTotal(): ?float
-    {
-        return $this->total;
-    }
-
-    public function setTotal(float $total): self
-    {
-        $this->total = $total;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getReference(): ?string
-    {
-        return $this->reference;
-    }
-
-    public function setReference(string $reference): self
-    {
-        $this->reference = $reference;
 
         return $this;
     }

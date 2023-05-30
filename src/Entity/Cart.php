@@ -43,21 +43,6 @@ class Cart
      */
     private $inventoryItem;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $carrierName;
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $carrierPrice;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $deliveryAddress;
-
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
@@ -128,39 +113,4 @@ class Cart
         return $this;
     }
 
-    public function getCarrierName(): ?string
-    {
-        return $this->carrierName;
-    }
-
-    public function setCarrierName(?string $carrierName): self
-    {
-        $this->carrierName = $carrierName;
-
-        return $this;
-    }
-
-    public function getCarrierPrice(): ?float
-    {
-        return $this->carrierPrice;
-    }
-
-    public function setCarrierPrice(?float $carrierPrice): self
-    {
-        $this->carrierPrice = $carrierPrice;
-
-        return $this;
-    }
-
-    public function getDeliveryAddress(): ?string
-    {
-        return $this->deliveryAddress;
-    }
-
-    public function setDeliveryAddress(?string $deliveryAddress): self
-    {
-        $this->deliveryAddress = $deliveryAddress;
-
-        return $this;
-    }
 }
