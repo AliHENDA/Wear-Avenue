@@ -17,7 +17,7 @@ class AccountController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('account/index.html.twig', [
+        return $this->render('front/account/index.html.twig', [
             'controller_name' => 'AccountController',
         ]);
     }
@@ -54,7 +54,7 @@ class AccountController extends AbstractController
             
         }
 
-        return $this->renderForm('account/password.html.twig', [
+        return $this->renderForm('front/account/password.html.twig', [
             'form' => $form,
             'message' => $message
         ]);
