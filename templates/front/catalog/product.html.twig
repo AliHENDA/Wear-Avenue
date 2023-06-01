@@ -4,7 +4,7 @@
     <div class="small-container single-product">
             <div class="row">
                 <div class="col-2">
-                    <img src="{{ asset('assets/img/kid-01.jpg') }}" width="100%" alt="" id="productImg">
+                    <img src="{{ product.picture }}" width="100%" alt="" id="productImg">
                     <div class="small-img-row">
                         <div class="small-img-col">
                             <img src="{{ asset('assets/img/kid-01.jpg') }}" alt="" class="small-img">
@@ -28,19 +28,19 @@
                         <i class="bi bi-star-fill"></i>
                     </div>
                     <h4>{{(product.price / 100)|number_format(2)}}</h4>
-                    <select name="" id="">
-                    <option value="">Select</option>
-                        {% for inventory in product.inventories %}
-                            <option value=" {{ inventory.id }}">{{ inventory.size }}</option>
-                            <input type="number" name="" id="" value="1">
-                            <form action="{{ path('app_cart_add', {id:inventory.id} )}}" method="POST">
-                            <button class="btn">Add to cart &#10095</button>
-                            </form>
-                        {% endfor %}
+                    {% for inventory in product.inventories %}
+                        <div class="row">
+                        <option value=" {{ inventory.id }}">{{ inventory.size }}</option>
+                        <input type="hidden" name="" id="" value="1">
+                    
+                        <form action="{{ path('app_cart_add', {id:inventory.id} )}}" method="POST">
+                        <button class="btn">Add to cart &#10095</button>
+                        </form>
+                        </div>
+                    {% endfor %}
                         <h3>Description</h3>
                         <br>
                         <p>{{ product.description }}</p>
-                    </select>
                 </div>
             </div>
         </div>

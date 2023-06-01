@@ -34,6 +34,18 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/women, roles: PUBLIC_ACCESS }
+        - { path: ^/men, roles: PUBLIC_ACCESS }
+        - { path: ^/kids, roles: PUBLIC_ACCESS }
+        - { path: ^/contact-us, roles: PUBLIC_ACCESS }
+        - { path: ^/my-account, roles:[ROLE_ADMIN, ROLE_MANAGER, ROLE_USER] }
+        - { path: ^/cart, roles: ROLE_USER }
+        - { path: ^/back/user, roles: ROLE_ADMIN}
+        - { path: ^/back/user/(new|edit), roles: ROLE_ADMIN}
+        - { path: ^/back/user/\d+$, roles: ROLE_ADMIN, methods: [POST]}
+        - { path: ^/back/(category|product), roles: [ROLE_ADMIN, ROLE_MANAGER]}
+        - { path: ^/back/(category|product)/\d+/edit, roles: [ROLE_ADMIN, ROLE_MANAGER]}
+        - { path: ^/back/(category|product)/\d+$, roles: [ROLE_ADMIN, ROLE_MANAGER], methods: [POST]}
 
 when@test:
     security:

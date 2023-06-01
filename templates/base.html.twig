@@ -34,6 +34,22 @@
                     </nav>
                 </div>
 
+                {% if (is_granted("ROLE_MANAGER") ) %}
+                <ul class="row">
+                    <li class="nav-item">
+                        <a class="btn" href="{{ path('app_back_product_index') }}">Change Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn" href="{{ path('app_back_category_index') }}">Change Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn" href="{{ path('app_back_user_index') }}">Change Users</a>
+                    </li>
+                </ul>
+            {% endif %}
+    
+    {% block sub_nav %}{% endblock %}
+
     {% block banner %}{% endblock %}
             </div>
         </div>

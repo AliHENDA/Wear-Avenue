@@ -1,70 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon récapitulatif{% endblock %}
+{% block title %}Summary of the order - Sapes Avenue{% endblock %}
 
 {% block javascript %}
 <script src="https://js.stripe.com/v3/"></script>
 {% endblock %}
 
 {% block main %}
-
-<h2>Je passe ma commande</h2>
-<p>Vérifier vos informations</p>
-<hr>
-<div class="row">
-
-    <div class="col-md-6">
-        <strong>Votre adresse de livraison</strong> <br>
-        <div class="form-check mt-5">
-            {{ delivery|raw}}
-        </div>
+    <div class="small-container">
+        <h2>Commande validation</h2>
+        <p>Check your informations</p>
         <hr>
-        <strong>Mon transporteur</strong>
-        <br>
-        <div class="form-check">
-            {{ carrier.name}} <br>
-            {{ carrier.description}} <br>
-            {{ carrier.price|number_format(2)}} €
-        </div>
+    </div>
+
+    <div class="row">
     
-    </div>
-    <div class="col-md-6">
-        <div class="text-center">
-            <b>Votre commande</b><br>
+        <div class="col-md-6">
+            <strong>Your delivery address</strong> <br>
+            <div class="form-check mt-5">
+                {{ delivery|raw}}
+            </div>
+            <hr>
+            <strong>Your carrier</strong>
+            <br>
+            <div class="form-check">
+                {{ carrier.name}} <br>
+                {{ carrier.description}} <br>
+                {{ (carrier.price / 100)|number_format(2)}} $
+            </div>
+
         </div>
-        <div class="order-summary">
-            {% set total = 0 %}
-            {% for item in cart %}
-            {% set product = item.inventoryItem.product %}
-            {% set size =  item.inventoryItem.size %}
-                <div class="cart-info">
-                    <img src="{{ product.picture }}" width="50px"alt="">
-                    <div>
-                        <p>{{ product.name }}</p>
-                        <small>Unit price : {{ (product.price / 100)|number_format(2) }} €</small>
-                        <small>Quantity : {{ item.quantity }}</small>
-                        <small>-- {{(product.price * item.quantity / 100)|number_format(2)}}€</td></small>
-                        <br>
-                        <small>Size : {{ size }}</small>
+        <div class="col-md-6">
+            <div class="text-center">
+                <b>Your order</b><br>
+            </div>
+            <div class="order-summary">
+                {% set total = 0 %}
+                {% for item in cart %}
+                {% set product = item.inventoryItem.product %}
+                {% set size =  item.inventoryItem.size %}
+                    <div class="cart-info">
+                        <img src="{{ product.picture }}" width="50px"alt="">
+                        <div>
+                            <p>{{ product.name }}</p>
+                            <small>Unit price : {{ (product.price / 100)|number_format(2) }} $</small>
+                            <small>Quantity : {{ item.quantity }}</small>
+                            <small>-- {{(product.price * item.quantity / 100)|number_format(2)}}$</td></small>
+                            <br>
+                            <small>Size : {{ size }}</small>
+                        </div>
                     </div>
-                </div>
-            {% set total = total + (product.price * item.quantity / 100) %} 
-         {% endfor %}
+                {% set total = total + (product.price * item.quantity / 100) %} 
+             {% endfor %}
 
+            </div>
+
+            {% set totalTTC = (total + carrier.price / 100)|number_format(2) %}
+            {% set totalHT = (totalTTC / 1.2)|number_format(2) %}
+
+            <div class="text-right">
+            {#<b>Nombre de produit(s) : {{ cart.data.quantityCart }}</b><br>#}
+            <b>Frais de livraison : {{ (carrier.price / 100)|number_format(2) }} $</b><br>
+            <b>Total HT : {{ totalHT }} $</b><br>
+            <b>TVA : {{ totalTTC - totalHT }} $</b><br>
+            <b>Total TTC : {{ totalTTC }} $</b><br>
+            <a href="{{ path('app_stripe', {'reference':reference} )}}" class="btn" id="checkout-button"><strong>Payer {{ totalTTC }} $</strong> </a>
         </div>
-
-        {% set totalTTC = (total + carrier.price / 100)|number_format(2) %}
-        {% set totalHT = (totalTTC / 1.2)|number_format(2) %}
-
-        <div class="text-right">
-        {#<b>Nombre de produit(s) : {{ cart.data.quantityCart }}</b><br>#}
-        <b>Frais de livraison : {{ (carrier.price / 100)|number_format(2) }} €</b><br>
-        <b>Total HT : {{ totalHT }} €</b><br>
-        <b>TVA : {{ totalTTC - totalHT }} €</b><br>
-        <b>Total TTC : {{ totalTTC }} €</b><b
     </div>
-        <a href="{{ path('app_stripe', {'reference':reference} )}}" class="btn" id="checkout-button"><strong>Payer {{ totalTTC }} €</strong> </a>
-    </div>
-
-</div>
 {% endblock %}

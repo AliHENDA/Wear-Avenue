@@ -3,62 +3,62 @@
 {% block title %}You cart - Sapes Avenue{% endblock %}
 
 {% block main %}
-<div class="small-container cart-page">
-            <table>
-                <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                </tr>
-                {% set total = 0 %}
-                {% for item in cart %}
-                <tr>              
-                    <td>
-                    {% set product = item.inventoryItem.product %}
-                    {% set size =  item.inventoryItem.size %}
-                        <div class="cart-info">
-                            <img src="{{ product.picture }}" alt="">
-                            <div>
-                                <p>{{ product.name }}</p>
-                                <small>Unit price : {{ (product.price / 100)|number_format(2) }} €</small>
-                                <br>
-                                <small>Size : {{ size }}</small>
-                            </div>
+    <div class="small-container cart-page">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            {% set total = 0 %}
+            {% for item in cart %}
+            <tr>              
+                <td>
+                {% set product = item.inventoryItem.product %}
+                {% set size =  item.inventoryItem.size %}
+                    <div class="cart-info">
+                        <a href="{{ path('app_front_product', {slug:product.slug}) }}"><img src="{{ product.picture }}" alt=""></a>
+                        <div>
+                            <p>{{ product.name }}</p>
+                            <small>Unit price : {{ (product.price / 100)|number_format(2) }}$</small>
+                            <br>
+                            <small>Size : {{ size }}</small>
                         </div>
-                    </td>
-                    <td class="td">
+                    </div>
+                </td>
+                <td class="td">
                     <form action="{{ path('app_cart_delete', {id:item.inventoryItem.id}) }}" method="POST">
-                    <button class="btn">-</button>
+                        <button class="btn">-</button>
                     </form>
                     <input type="text" value="{{ item.quantity }}" disabled>
                     <form action="{{ path('app_cart_add', {id:item.inventoryItem.id}) }}" method="POST">
-                    <button class="btn">+</button>
-                    </td>
+                        <button class="btn">+</button>
                     </form>
-                    <td>{{(product.price * item.quantity / 100)|number_format(2)}}</td>
-
-                    {% set total = total + (product.price * item.quantity / 100) %}               
-                </tr>
-                {% endfor %}
-            </table>
+                </td>
+                <td>{{(product.price * item.quantity / 100)|number_format(2)}}$</td>
+                {% set total = total + (product.price * item.quantity / 100) %}               
+            </tr>
+            {% endfor %}
+        </table>
 
             <div class="total-price">
                 <table>
                     <tr>
                         <td>Subtotal</td>
-                        <td>{{ (total / 1.2)|number_format(2) }}€</td>
+                        <td>{{ (total / 1.2)|number_format(2) }}$</td>
                     </tr>
                     <tr>
                         <td>Tax</td>
-                        <td>{{ (total - (total / 1.2))|number_format(2) }}€</td>
+                        <td>{{ (total - (total / 1.2))|number_format(2) }}$</td>
                     </tr>
                     <tr>
                         <td>Total</td>
-                        <td>{{ total|number_format(2) }}€</td>
+                        <td>{{ total|number_format(2) }}$</td>
                     </tr>
-                    
                 </table>
             </div>
+            {% if cart is not empty %}        
+            <a href="{{ path('app_front_order')}}" class="btn">Purshase now ></a>
+            {% endif %}
         </div>
-        <a href="{{ path('app_front_order')}}" class="btn"></a>
 {% endblock %}

@@ -11,6 +11,7 @@ body {
     font-weight: 400;
     background-color: #fff;
     font-size: 1rem;
+    min-height: 100vh;
 }
 
 .navbar {
@@ -122,7 +123,7 @@ color: #555;
     transform: translateX(-50%);
 }
 
-.categories {
+.group {
     margin: 70px 0;
 }
 
@@ -469,7 +470,6 @@ table{
 }
 
 th{
-    text-align: center;
     padding: 5px;
     color: white;
     background: black;
@@ -611,6 +611,3 @@ form a{
     display: flex;
     flex-direction: column;
 }
-
-
-

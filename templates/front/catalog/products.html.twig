@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ name}} - Sapes Avenue{% endblock %}
+{% block title %}All products - Sapes Avenue{% endblock %}
 
 {% block main %}
 <div class="small-container">
@@ -19,7 +19,7 @@
             <div class="display">
             {% for product in products %}     
                 <div class="col-4">
-                    <a href="{{ path('app_front_product', {slug:product.slug}) }}"><img src= "{{ asset('assets/img/women-01.jpg') }}" alt=""></a>
+                    <a href="{{ path('app_front_product', {slug:product.slug}) }}"><img src= "{{ product.picture }}" alt=""></a>
                     <h4>{{ product.name }}</h4>
                 </div>
             {% endfor %}

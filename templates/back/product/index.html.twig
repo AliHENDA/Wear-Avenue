@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Products - Sapes Avenue{% endblock %}
+
+{% block main %}
+    <h1>All Products</h1>
+
+    <table class="table-back">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Picture</th>
+                <th>Gender</th>
+                <th>Color</th>
+                <th>Rate</th>
+                <th>Price</th>
+                <th>CreatedAt</th>
+                <th>Best_sellers_order</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td><img src="{{ product.picture }}" alt="" width="125px"></td>
+                <td>{{ product.gender }}</td>
+                <td>{{ product.color }}</td>
+                <td>{{ product.rate }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ product.bestSellersOrder }}</td>
+                <td>
+                    <a href="{{ path('app_back_product_show', {'id': product.id}) }}">show</a>
+                    <a href="{{ path('app_back_product_edit', {'id': product.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_product_new') }}">Create new</a>
+{% endblock %}

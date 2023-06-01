@@ -7,7 +7,7 @@
                     <div class="col-2">
                         <h1>Sapes Avenue</h1>
                         <p>Success isn't always about greatness. It's about consistency. Consistent <br> hardwork gains success. Greatness will come</p>
-                        <a href="" class="btn">Purshase Now &#10095</a>
+                        <a href="{{ path('app_front_products')}}" class="btn">Purshase Now &#10095</a>
                     </div>
                     <div class="col-2">
                         <img src="{{ asset('assets/img/left-banner-image.jpg') }}" alt="">
@@ -16,33 +16,30 @@
 {% endblock %}
 
 {% block main %}
-    <div class="categories">
-            <div class="small-container">
-                <h2 class="title">Categories</h2>
+    <div class="group">
+        <div class="small-container">
+            <h2 class="title">Categories</h2>
             <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                     <img src="assets/img/baner-right-image-01.jpg" alt="">
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <img src="assets/img/baner-right-image-02.jpg" alt="">
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <img src="assets/img/baner-right-image-03.jpg" alt="">
-                </div>
-                <div class="col-4">
-                    <img src="assets/img/baner-right-image-04.jpg" alt="">
                 </div>
             </div>
         </div>
-        </div>
+    
 
-        <!-- featured categories -->
         <div class="small-container">
             <h2 class="title">Best Sellers</h2>
             <div class="row">
+            {% for bestSellersProduct in bestSellersProducts %}
                 <div class="col-4">
-                    <img src="assets/img/women-01.jpg" alt="">
-                    <h4>Product 1</h4>
+                    <a href="{{ path('app_front_product', {slug:bestSellersProduct.slug}) }}"><img src="{{ bestSellersProduct.picture }}" alt="{{ bestSellersProduct.name }}"></a>
+                    <h4>{{ bestSellersProduct.name }}</h4>
                     <div class="rating">
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-fill"></i>
@@ -50,50 +47,17 @@
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-half"></i>
                     </div>
-                    <p>50.00€</p>
+                    <p>{{ (bestSellersProduct.price / 100)|number_format(2)}}$</p>
                 </div>
-                <div class="col-4">
-                    <img src="assets/img/women-02.jpg" alt="">
-                    <h4>Product 2</h4>
-                    <div class="rating">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <p>50.00€</p>
-                </div>
-                <div class="col-4">
-                    <img src="assets/img/women-03.jpg" alt="">
-                    <h4>Product 3</h4>
-                    <div class="rating">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                        <i class="bi bi-star"></i>
-                    </div>
-                    <p>50.00€</p>
-                </div>
-                <div class="col-4">
-                    <img src="assets/img/kid-01.jpg" alt="">
-                    <h4>Product 4</h4>
-                    <div class="rating">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <p>50.00€</p>
-                </div>
+            {% endfor %}
             </div>
+
             <h2 class="title">Latest Products</h2>
             <div class="row">
+            {% for latestProduct in latestProducts %}
                 <div class="col-4">
-                    <img src="assets/img/women-01.jpg" alt="">
-                    <h4>Product 1</h4>
+                    <a href="{{ path('app_front_product', {slug:latestProduct.slug}) }}"><img src="{{ latestProduct.picture }}" alt="{{ latestProduct.name }}"></a>
+                    <h4>{{ latestProduct.name }}</h4>
                     <div class="rating">
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-fill"></i>
@@ -101,47 +65,12 @@
                         <i class="bi bi-star-fill"></i>
                         <i class="bi bi-star-half"></i>
                     </div>
-                    <p>50.00€</p>
+                    <p>{{ (latestProduct.price / 100)|number_format(2) }}$</p>
                 </div>
-                <div class="col-4">
-                    <img src="assets/img/women-02.jpg" alt="">
-                    <h4>Product 2</h4>
-                    <div class="rating">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <p>50.00€</p>
-                </div>
-                <div class="col-4">
-                    <img src="assets/img/women-03.jpg" alt="">
-                    <h4>Product 3</h4>
-                    <div class="rating">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                        <i class="bi bi-star"></i>
-                    </div>
-                    <p>50.00€</p>
-                </div>
-                <div class="col-4">
-                    <img src="assets/img/kid-01.jpg" alt="">
-                    <h4>Product 4</h4>
-                    <div class="rating">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <p>50.00€</p>
-                </div>
+            {% endfor %}
             </div>
         </div>
-
+    </div>
         <!-- offer -->
         <div class="offer">
             <div class="small-container">

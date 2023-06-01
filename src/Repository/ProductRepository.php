@@ -39,6 +39,23 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
+    public function getBestSellers(): array
+    {
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "SELECT * FROM `product` 
+                WHERE `best_sellers_order` > 0 
+                ORDER BY `best_sellers_order` ASC
+                LIMIT 4";
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */
