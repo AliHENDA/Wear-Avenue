@@ -17,7 +17,7 @@
                     </div>
                     <nav>
                         <ul id="MenuItems">
-                            <li><a href="{{ path('app_front_main_home')}}">Home</li></a>
+                            <a href="{{ path('app_front_main_home')}}"><li>Home</li></a>
                             <a href="{{ path('app_front_category_women')}}"><li>Women's</li></a> 
                             <a href="{{ path('app_front_category_men')}}"><li>Men's</li></a>
                             <a href="{{ path('app_front_category_kids')}}"><li>Kid's</li></a>
@@ -35,17 +35,13 @@
                 </div>
 
                 {% if (is_granted("ROLE_MANAGER") ) %}
-                <ul class="row">
-                    <li class="nav-item">
-                        <a class="btn" href="{{ path('app_back_product_index') }}">Change Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn" href="{{ path('app_back_category_index') }}">Change Categories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn" href="{{ path('app_back_user_index') }}">Change Users</a>
-                    </li>
-                </ul>
+                <nav class="sub-nav">
+                    <ul id="MenuItems">
+                        <a href="{{ path('app_back_product_index')}}"><li>Products</li></a>
+                        <a href="{{ path('app_front_category_women')}}"><li>Categories</li></a> 
+                        <a href="{{ path('app_front_category_men')}}"><li>Users</li></a>
+                    </ul>
+                </nav>
             {% endif %}
     
     {% block sub_nav %}{% endblock %}

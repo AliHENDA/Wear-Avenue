@@ -21,6 +21,22 @@
                 <div class="col-4">
                     <a href="{{ path('app_front_product', {slug:product.slug}) }}"><img src= "{{ product.picture }}" alt=""></a>
                     <h4>{{ product.name }}</h4>
+                    <div class="rating">
+                        {% set star = product.rate %}
+                            {% for i in 1..(star) %}
+                            <i class="bi bi-star-fill"></i>
+                            {% endfor %}
+                        {% set stars = star * 10 %}
+                            {% if stars % 10 > 0 %}
+                            <i class="bi bi-star-half"></i>
+                            {% endif %}
+                        {% for i in 1..5 %}
+                            {% if i >= (star + 1) %}
+                             <i class="bi bi-star"></i>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <p>{{ (product.price / 100)|number_format(2)}}$</p>
                 </div>
             {% endfor %}
         </div>

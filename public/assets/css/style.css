@@ -611,3 +611,8 @@ form a{
     display: flex;
     flex-direction: column;
 }
+
+.sub-nav {
+    display: flex;
+    justify-content: end;
+}
