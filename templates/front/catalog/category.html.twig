@@ -20,11 +20,11 @@
             {% for category in categories %}     
                 <div class="col-4">
                 {% if app.request.get('_route') == "app_front_category_women" %}
-                    <a href="{{ path('app_front_products_by_category_women', {slug: category.slug})}}"><img src= "{{ asset('assets/img/pexels-mnz-1598507 (1).jpg') }}" alt=""></a>
+                    <a href="{{ path('app_front_products_by_category_women', {slug: category.slug})}}"><img src= "{{ asset(category.picture) }}" alt="{{ category.name }}"></a>
                 {% elseif app.request.get('_route') == "app_front_category_men" %}
-                    <a href="{{ path('app_front_products_by_category_men', {slug: category.slug})}}"><img src= "{{ asset('assets/img/pexels-mnz-1598507 (1).jpg') }}" alt=""></a>
+                    <a href="{{ path('app_front_products_by_category_men', {slug: category.slug})}}"><img src= "{{ asset(category.picture) }}" alt="{{ category.name }}"></a>
                 {% else %}
-                    <a href="{{ path('app_front_products_by_category_kids', {slug: category.slug})}}"><img src= "{{ asset('assets/img/pexels-mnz-1598507 (1).jpg') }}" alt=""></a>
+                    <a href="{{ path('app_front_products_by_category_kids', {slug: category.slug})}}"><img src= "{{ asset(category.picture) }}" alt="{{ category.name }}"></a>
                 {% endif %}
                     <h4>{{ category.name }}</h4>
                 </div>
