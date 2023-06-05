@@ -42,9 +42,8 @@
                         <a href="{{ path('app_front_category_men')}}"><li>Users</li></a>
                     </ul>
                 </nav>
-            {% endif %}
+                {% endif %}
     
-    {% block sub_nav %}{% endblock %}
 
     {% block banner %}{% endblock %}
             </div>
@@ -52,7 +51,7 @@
     <main>
         {% block main %}{% endblock %}
     </main>
-        <div class="footer">
+        <footer>
             <div class="container">
                 <div class="row">
                     <div class="footer-col-1">
@@ -65,7 +64,7 @@
                         </div>
                     </div>
                     <div class="footer-col-2">
-                        <img src="{{ asset('assets/img/logo.png') }}" alt="">
+                        <img src="{{ asset('assets/img/logo2.png') }}" alt="Sapes-Avenue-Logo">
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error possimus dolorum non explicabo officia, eaque, repudiandae est fugiat minus labore deleniti voluptates facilis eos vel?</p>
                     </div>
                     <div class="footer-col-3">
@@ -91,7 +90,7 @@
                 <p class="copyright">Copyright 2022 - Sapes Avenue</p>
             </div>
         </div>
-
+    </footer>
         <script src="{{ asset('assets/js/app.js') }}"></script>
     
     </body>

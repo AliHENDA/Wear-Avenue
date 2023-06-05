@@ -1,42 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Valider ma commande{% endblock %}
+{% block title %}Valider ma commande
+{% endblock %}
 
 {% block main %}
 
-<div class="row">
-    <div class="">
-        <p>Choisissez votre préférence</p>
-        <a href="{{ path('app_front_address_add')}}" class="btn">Add a new address</a>
-        {% set formHtml  %}
-        {{ form_start(form, {action:path('app_front_order_recap')})}}
-        {{ form_end(form)}}
-        {% endset %}   
+	<div class="row">
+		<div class="">
+			<p>Choisissez votre préférence</p>
+			<a href="{{ path('app_front_address_add')}}" class="btn">Add a new address</a>
+			{% set formHtml  %}
+			{{ form_start(form, {action:path('app_front_order_recap')})}}
+			{{ form_end(form)}}
+			{% endset %}
 
-        {{ formHtml|replace({"[br]" : "<br>"})|raw }}       
-    </div>
+			{{ formHtml|replace({"[br]" : "<br>"})|raw }}
+		</div>
 
-    <div class="">
+		<div class="">
 
-            <b>Récapitulatif de votre panier</b><br>
+			<b>Récapitulatif de votre panier</b><br>
 
-            {% for item in cart %}
-            {% set product = item.inventoryItem.product %}
-            {% set size =  item.inventoryItem.size %}
+			{% for item in cart %}
+				{% set product = item.inventoryItem.product %}
+				{% set size =  item.inventoryItem.size %}
 
-            <div class="cart-info">
-                <img src="{{ product.picture }}" width="50px" alt="">
-                <div>
-                    <p>{{ product.name }}</p>
-                    <small>Unit price : {{ (product.price / 100)|number_format(2) }} $</small>
-                    <br>
-                    <small>Size : {{ size }}</small>
-                </div>
-            </div>
+				<div class="cart-info">
+					<img src="{{ product.picture }}" width="50px" alt="">
+					<div>
+						<p>{{ product.name }}</p>
+						<small>Unit price :
+							{{ (product.price / 100)|number_format(2) }}
+							$</small>
+						<br>
+						<small>Size :
+							{{ size }}</small>
+					</div>
+				</div>
 
-         {% endfor %}
-  
-    </div>
+			{% endfor %}
 
-</div>
+		</div>
+
+	</div>
 {% endblock %}

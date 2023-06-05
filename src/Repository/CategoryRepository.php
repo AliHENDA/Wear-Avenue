@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Category;
+use App\Service\MySlugger;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @extends ServiceEntityRepository<Category>
@@ -16,13 +18,18 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CategoryRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+
+    private $mySlugger;
+
+    public function __construct(ManagerRegistry $registry, MySlugger $mySlugger)
     {
+        $this->mySlugger = $mySlugger;
         parent::__construct($registry, Category::class);
     }
 
     public function add(Category $entity, bool $flush = false): void
     {
+        $entity->setSlug($this->mySlugger->slugify($entity->getName()));
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {

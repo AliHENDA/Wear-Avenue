@@ -14,7 +14,7 @@ class MainController extends AbstractController
      * @Route("/", name="app_front_main_home")
      */
     public function index(ProductRepository $productRepository): Response
-    { 
+    {
         $products = $productRepository->findAll();
         $latestProducts = array_slice($products, -4);
 

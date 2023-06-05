@@ -22,7 +22,7 @@ class OrderController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        
+
         $cart = $this->getUser()->getCarts();
 
         if(!$this->getUser()->getAddresses()->getValues()) {
@@ -55,7 +55,7 @@ class OrderController extends AbstractController
             return $this->redirectToRoute('app_front_address_add');
         }
         $form = $this->createForm(OrderType::class, null, ['user' => $this->getUser()]);
-        
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
@@ -82,7 +82,7 @@ class OrderController extends AbstractController
             $order->setCarrierPrice($carrier->getPrice());
             $order->setDeliveryAddress($deliveryContent);
             $order->setCreatedAt($date);
-            
+
             foreach($cart as $cartItem) {
                 $orderDetails = new OrderDetails();
                 $orderDetails->setMyOrder($order);
@@ -91,18 +91,18 @@ class OrderController extends AbstractController
                 $orderDetails->setSize($cartItem->getInventoryItem()->getSize());
                 $orderDetails->setPrice($cartItem->getInventoryItem()->getProduct()->getPrice());
                 $orderDetails->setTotal($cartItem->getInventoryItem()->getProduct()->getPrice() * $cartItem->getQuantity());
-                
+
                 $entityManager->persist($orderDetails);
             }
- 
+
             $entityManager->flush();
 
-           return $this->render('front/order/add.html.twig', [
-            'cart' => $cart,
-            'carrier'=> $carrier,
-            'delivery' => $deliveryContent,
-            'reference' => $order->getReference()
-           ]);
+            return $this->render('front/order/add.html.twig', [
+             'cart' => $cart,
+             'carrier'=> $carrier,
+             'delivery' => $deliveryContent,
+             'reference' => $order->getReference()
+            ]);
         }
         return $this->redirectToRoute('app_cart');
     }
@@ -120,10 +120,10 @@ class OrderController extends AbstractController
 
         $user = $order->getUser();
         $cart = $user->getCarts();
-        
+
 
         foreach($cart as $cartItem) {
-            
+
 
             $quantity = $cartItem->getQuantity();
             $inventoryItem = $cartItem->getInventoryItem();
@@ -166,5 +166,5 @@ class OrderController extends AbstractController
            'order' => $order
         ]);
     }
-    
+
 }

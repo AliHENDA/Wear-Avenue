@@ -23,7 +23,7 @@ class CartController extends AbstractController
             $user = $this->getUser();
             $cart = $user->getCarts();
         } else {
-        $cart = null;
+            $cart = null;
         }
 
         return $this->render('front/cart/index.html.twig', [
@@ -41,19 +41,19 @@ class CartController extends AbstractController
 
         if($existingCart) {
 
-        $existingCart->setQuantity($existingCart->getQuantity() + 1);
-        $existingCart->setUpdatedAt(new DateTimeImmutable());
+            $existingCart->setQuantity($existingCart->getQuantity() + 1);
+            $existingCart->setUpdatedAt(new DateTimeImmutable());
 
-        $entityManager = $doctrine->getManager();
-        $entityManager->flush();
+            $entityManager = $doctrine->getManager();
+            $entityManager->flush();
 
         } else {
-        
+
             $cart = new Cart();
             $cart->setUser($this->getUser());
             $cart->setInventoryItem($inventory);
             $cart->setQuantity(1);
-        
+
             $cartRepository->add($cart, true);
         }
         return $this->redirectToRoute('app_cart');
@@ -70,11 +70,11 @@ class CartController extends AbstractController
 
         if($existingCart->getQuantity() > 1) {
 
-        $existingCart->setQuantity($existingCart->getQuantity() - 1);
-        $existingCart->setUpdatedAt(new DateTimeImmutable());
+            $existingCart->setQuantity($existingCart->getQuantity() - 1);
+            $existingCart->setUpdatedAt(new DateTimeImmutable());
 
         } else {
-        
+
             $entityManager->remove($existingCart);
         }
 
@@ -88,13 +88,13 @@ class CartController extends AbstractController
      */
     public function empty(Inventory $inventory, CartRepository $cartRepository, ManagerRegistry $doctrine): Response
     {
-        
-       // on récupère l'utilisateur connecté
+
+        // on récupère l'utilisateur connecté
         $user = $this->getUser();
-        
+
         // on récupère tous les objets cart fonction de l'utilisateur
         $existingCarts = $cartRepository->findBy(["user"=> $user]);
-        
+
         foreach ($existingCarts as $existingCart) {
 
             // pour chaque objet cart, on indique qu'on veut le supprimer, et on le flush

@@ -35,15 +35,15 @@ class AddressController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            
+
             $address->setUser($this->getUser());
             $addressRepository->add($address, true);
 
-        if($this->getUser()->getCarts() == true) {
-            return $this->redirectToRoute('app_front_order');
-        } else {
-            return $this->redirectToRoute('app_front_address');
-        }
+            if($this->getUser()->getCarts() == true) {
+                return $this->redirectToRoute('app_front_order');
+            } else {
+                return $this->redirectToRoute('app_front_address');
+            }
         }
         return $this->render('front/address/add.html.twig', [
             'address' => $address,
@@ -66,7 +66,7 @@ class AddressController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            
+
             $addressRepository->add($address, true);
 
             return $this->redirectToRoute('app_front_address');
@@ -87,10 +87,9 @@ class AddressController extends AbstractController
         if(!$address || $address->getUser() != $this->getUser()) {
             return $this->redirectToRoute('app_front_address');
         }
-            
+
         $addressRepository->remove($address, true);
 
         return $this->redirectToRoute('app_front_address');
     }
 }
-

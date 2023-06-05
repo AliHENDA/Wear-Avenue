@@ -27,7 +27,7 @@ class CatalogController extends AbstractController
      * @Route("/women/{slug}", name="app_front_products_by_category_women")
      */
     public function womenProductsByCategory(Category $category = null): Response
-    {   
+    {
 
         $this->noExist($category);
 
@@ -44,7 +44,7 @@ class CatalogController extends AbstractController
      */
     public function men(CategoryRepository $categoryRepository): Response
     {
-        
+
         return $this->render('front/catalog/category.html.twig', [
             'categories' => $categoryRepository->findAll(),
         ]);
@@ -54,11 +54,11 @@ class CatalogController extends AbstractController
      * @Route("/men/{slug}", name="app_front_products_by_category_men")
      */
     public function menProductsByCategory(Category $category = null): Response
-    {   
+    {
         $this->noExist($category);
 
         $products = $category->getMenProducts();
-        
+
         return $this->render('front/catalog/products.html.twig', [
             'products' => $products,
             'category' => $category
@@ -70,7 +70,7 @@ class CatalogController extends AbstractController
      */
     public function kids(CategoryRepository $categoryRepository): Response
     {
-        
+
         return $this->render('front/catalog/category.html.twig', [
             'categories' => $categoryRepository->findAll()
         ]);
@@ -80,7 +80,7 @@ class CatalogController extends AbstractController
      * @Route("/kids/{slug}", name="app_front_products_by_category_kids")
      */
     public function kidsProductsByCategory(Category $category = null): Response
-    {   
+    {
         $this->noExist($category);
 
         $products = $category->getKidsProducts();
@@ -95,17 +95,17 @@ class CatalogController extends AbstractController
      * @Route("/products", name="app_front_products")
      */
     public function getAllProducts(ProductRepository $productRepository): Response
-    {   
+    {
         return $this->render('front/catalog/products.html.twig', [
             'products' => $productRepository->findAll(),
         ]);
     }
-    
+
     /**
      * @Route("/product/{slug}", name="app_front_product")
      */
     public function getProduct(Product $product = null): Response
-    {   
+    {
         $this->noExist($product);
 
         return $this->render('front/catalog/product.html.twig', [
@@ -114,7 +114,7 @@ class CatalogController extends AbstractController
     }
 
 
-    private function noExist($object) 
+    private function noExist($object)
     {
         if($object === null) {
             throw $this->createNotFoundException("It doesn't exist");

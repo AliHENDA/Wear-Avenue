@@ -1,17 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Compte{% endblock %}
+{% block title %}Mon Compte
+{% endblock %}
 
 {% block main %}
-<div class="small-container">
-    <h1>My account</h1>
+	<div class="small-container">
+		<h1>My account</h1>
 
-    Welcome {{ app.user.firstname }} in your account <br>
-    <hr>
+		Welcome
+		{{ app.user.firstname }}
+		in your account
+		<br>
+		<hr>
 
-    <a href="{{ path('app_front_account_password')}}">Change my password</a><br>
-    <a href="{{ path('app_front_address')}}">My addresses</a><br>
-    My orders<br>
-</div>
+		<a href="{{ path('app_front_account_password')}}">Change my password</a><br>
+		<a href="{{ path('app_front_address')}}">My addresses</a><br>
+		My orders<br>
+	</div>
 
 {% endblock %}

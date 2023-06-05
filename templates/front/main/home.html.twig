@@ -1,171 +1,174 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sape Avenue{% endblock %}
+{% block title %}Sape Avenue
+{% endblock %}
 
 {% block banner %}
-<div class="row">
-                    <div class="col-2">
-                        <h1>Sapes Avenue</h1>
-                        <p>Success isn't always about greatness. It's about consistency. Consistent <br> hardwork gains success. Greatness will come</p>
-                        <a href="{{ path('app_front_products')}}" class="btn">Purshase Now &#10095</a>
-                    </div>
-                    <div class="col-2">
-                        <img src="{{ asset('assets/img/left-banner-image.jpg') }}" alt="">
-                    </div>
-                </div>
+	<div class="row">
+		<div class="col-2">
+			<h1>FashAvenue</h1>
+			<p>Success isn't always about greatness. It's about consistency. Consistent
+				<br>
+				hardwork gains success. Greatness will come</p>
+			<a href="{{ path('app_front_products')}}" class="btn">Purshase Now &#10095</a>
+		</div>
+		<div class="col-2">
+			<img src="{{ asset('assets/img/left-banner-image.jpg') }}" alt="">
+		</div>
+	</div>
 {% endblock %}
 
 {% block main %}
-    <div class="group">
-        <div class="small-container">
-            <h2 class="title">Categories</h2>
-            <div class="row">
-                <div class="col-3">
-                    <img src="assets/img/baner-right-image-01.jpg" alt="">
-                </div>
-                <div class="col-3">
-                    <img src="assets/img/baner-right-image-02.jpg" alt="">
-                </div>
-                <div class="col-3">
-                    <img src="assets/img/baner-right-image-03.jpg" alt="">
-                </div>
-            </div>
-        </div>
-    
+	<div class="group">
+		<div class="small-container">
+			<h2 class="title">Categories</h2>
+			<div class="row">
+				<div class="col-3">
+					<img src="assets/img/baner-right-image-01.jpg" alt="">
+				</div>
+				<div class="col-3">
+					<img src="assets/img/baner-right-image-02.jpg" alt="">
+				</div>
+				<div class="col-3">
+					<img src="assets/img/baner-right-image-03.jpg" alt="">
+				</div>
+			</div>
+		</div>
 
-        <div class="small-container">
-            <h2 class="title">Best Sellers</h2>
-            <div class="row">
-            {% for bestSellersProduct in bestSellersProducts %}
-                <div class="col-4">
-                    <a href="{{ path('app_front_product', {slug:bestSellersProduct.slug}) }}"><img src="{{ bestSellersProduct.picture }}" alt="{{ bestSellersProduct.name }}"></a>
-                    <h4>{{ bestSellersProduct.name }}</h4>
-                    <div class="rating">
-                        {% set star = bestSellersProduct.rate %}
-                            {% for i in 1..(star) %}
-                            <i class="bi bi-star-fill"></i>
-                            {% endfor %}
-                        {% set stars = star * 10 %}
-                            {% if stars % 10 > 0 %}
-                            <i class="bi bi-star-half"></i>
-                            {% endif %}
-                        {% for i in 1..5 %}
-                            {% if i >= (star + 1) %}
-                             <i class="bi bi-star"></i>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <p>{{ (bestSellersProduct.price / 100)|number_format(2)}}$</p>
-                </div>
-            {% endfor %}
-            </div>
 
-            <h2 class="title">Latest Products</h2>
-            <div class="row">
-            {% for latestProduct in latestProducts %}
-                <div class="col-4">
-                    <a href="{{ path('app_front_product', {slug:latestProduct.slug}) }}"><img src="{{ latestProduct.picture }}" alt="{{ latestProduct.name }}"></a>
-                    <h4>{{ latestProduct.name }}</h4>
-                    <div class="rating">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <p>{{ (latestProduct.price / 100)|number_format(2) }}$</p>
-                </div>
-            {% endfor %}
-            </div>
-        </div>
-    </div>
-        <!-- offer -->
-        <div class="offer">
-            <div class="small-container">
-                <div class="row">
-                    <div class="col-2">
-                        <img src="assets/img/team-member-02.jpg" alt="" class="offer-img">
-                    </div>
-                    <div class="col-2">
-                        <p>Exclusively Available on RedStore</p>
-                        <h2 class="offer-product">Product 122</h2>
-                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum vel explicabo voluptatem laudantium iste sit nesciunt cumque est in! Et expedita vel architecto rerum hic fuga excepturi esse porro eius.</small>
-                        <div>
-                            <a href="" class="btn">Buy Now &#10095</a>
-                        </div>                      
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="small-container">
+			<h2 class="title">Best Sellers</h2>
+			<div class="row">
+				{% for bestSellersProduct in bestSellersProducts %}
+					<div class="col-4">
+						<a href="{{ path('app_front_product', {slug:bestSellersProduct.slug}) }}"><img src="{{ bestSellersProduct.picture }}" alt="{{ bestSellersProduct.name }}"></a>
+						<h4>{{ bestSellersProduct.name }}</h4>
+						<div class="rating">
+							{% set star = bestSellersProduct.rate %}
+							{% for i in 1..(star) %}
+								<i class="bi bi-star-fill"></i>
+							{% endfor %}
+							{% set stars = star * 10 %}
+							{% if stars % 10 > 0 %}
+								<i class="bi bi-star-half"></i>
+							{% endif %}
+							{% for i in 1..5 %}
+								{% if i >= (star + 1) %}
+									<i class="bi bi-star"></i>
+								{% endif %}
+							{% endfor %}
+						</div>
+						<p>{{ (bestSellersProduct.price / 100)|number_format(2)}}$</p>
+					</div>
+				{% endfor %}
+			</div>
 
-        <!-- Testimonials -->
-        <div class="testimonial">
-            <div class="small-container">
-                <div class="row">
-                    <div class="col-3">
-                        <i class="bi bi-quote"></i>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae.</p>
-                        <div class="rating">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-half"></i>
-                        </div>
-                        <img src="assets/img/instagram-02.jpg" alt="">
-                        <h3>John Doe</h3>
-                    </div>
-                    <div class="col-3">
-                        <i class="bi bi-quote"></i>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae.</p>
-                        <div class="rating">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-half"></i>
-                        </div>
-                        <img src="assets/img/instagram-02.jpg" alt="">
-                        <h3>John Doe</h3>
-                    </div>
-                    <div class="col-3">
-                        <i class="bi bi-quote"></i>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae.</p>
-                        <div class="rating">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-half"></i>
-                        </div>
-                        <img src="assets/img/instagram-02.jpg" alt="">
-                        <h3>John Doe</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
+			<h2 class="title">Latest Products</h2>
+			<div class="row">
+				{% for latestProduct in latestProducts %}
+					<div class="col-4">
+						<a href="{{ path('app_front_product', {slug:latestProduct.slug}) }}"><img src="{{ latestProduct.picture }}" alt="{{ latestProduct.name }}"></a>
+						<h4>{{ latestProduct.name }}</h4>
+						<div class="rating">
+							<i class="bi bi-star-fill"></i>
+							<i class="bi bi-star-fill"></i>
+							<i class="bi bi-star-fill"></i>
+							<i class="bi bi-star-fill"></i>
+							<i class="bi bi-star-half"></i>
+						</div>
+						<p>{{ (latestProduct.price / 100)|number_format(2) }}$</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<!-- offer -->
+	<div class="offer">
+		<div class="small-container">
+			<div class="row">
+				<div class="col-2">
+					<img src="assets/img/team-member-02.jpg" alt="" class="offer-img">
+				</div>
+				<div class="col-2">
+					<p>Exclusively Available on RedStore</p>
+					<h2 class="offer-product">Product 122</h2>
+					<small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum vel explicabo voluptatem laudantium iste sit nesciunt cumque est in! Et expedita vel architecto rerum hic fuga excepturi esse porro eius.</small>
+					<div>
+						<a href="" class="btn">Buy Now &#10095</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-        <!-- Partenaires -->
-        <div class="brands">
-            <div class="small-container">
-                <div class="row">
-                    <div class="col-5">
-                        <img src="" alt="">
-                    </div>
-                    <div class="col-5">
-                        <img src="" alt="">
-                    </div>
-                    <div class="col-5">
-                        <img src="" alt="">
-                    </div>
-                    <div class="col-5">
-                        <img src="" alt="">
-                    </div>
-                    <div class="col-5">
-                        <img src="" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
+	<!-- Testimonials -->
+	<div class="testimonial">
+		<div class="small-container">
+			<div class="row">
+				<div class="col-3">
+					<i class="bi bi-quote"></i>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae.</p>
+					<div class="rating">
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-half"></i>
+					</div>
+					<img src="assets/img/instagram-02.jpg" alt="">
+					<h3>John Doe</h3>
+				</div>
+				<div class="col-3">
+					<i class="bi bi-quote"></i>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae.</p>
+					<div class="rating">
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-half"></i>
+					</div>
+					<img src="assets/img/instagram-02.jpg" alt="">
+					<h3>John Doe</h3>
+				</div>
+				<div class="col-3">
+					<i class="bi bi-quote"></i>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae.</p>
+					<div class="rating">
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-fill"></i>
+						<i class="bi bi-star-half"></i>
+					</div>
+					<img src="assets/img/instagram-02.jpg" alt="">
+					<h3>John Doe</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Partenaires -->
+	<div class="brands">
+		<div class="small-container">
+			<div class="row">
+				<div class="col-5">
+					<img src="" alt="">
+				</div>
+				<div class="col-5">
+					<img src="" alt="">
+				</div>
+				<div class="col-5">
+					<img src="" alt="">
+				</div>
+				<div class="col-5">
+					<img src="" alt="">
+				</div>
+				<div class="col-5">
+					<img src="" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
 
 {% endblock %}

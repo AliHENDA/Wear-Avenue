@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Product;
 use App\Entity\Category;
+use App\Form\InventoryType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ProductType extends AbstractType
 {
@@ -47,7 +49,9 @@ class ProductType extends AbstractType
             ->add('price', MoneyType::class, [
                 'label' => 'Price'
             ])
-            ->add('best_sellers_order', IntegerType::class)
+            ->add('best_sellers_order', IntegerType::class,[
+                'required' => false
+            ])
             ->add('category', EntityType::class, [
                 'label' => 'Category',
                 'class' => Category::class,
@@ -58,6 +62,13 @@ class ProductType extends AbstractType
                 'choice_label' => 'name',
                 //'multiple' => true,
                 //'expanded' => true,
+            ])
+            ->add('inventories', CollectionType::class, [
+                'entry_type' => InventoryType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'label' => 'Inventaire'
             ])
         ;
     }

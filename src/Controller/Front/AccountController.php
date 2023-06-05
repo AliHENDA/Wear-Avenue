@@ -26,7 +26,7 @@ class AccountController extends AbstractController
      * @Route("/my-account/change-my-password", name="app_front_account_password")
      */
     public function edit(Request $request, UserPasswordHasherInterface $passwordHasher, UserRepository $userRepository): Response
-    {   
+    {
         $message = null;
         $user = $this->getUser();
         $form = $this->createForm(ChangePasswordType::class, $user);
@@ -48,10 +48,11 @@ class AccountController extends AbstractController
                 $message = "Your password has been updated";
 
                 return $this->redirectToRoute('app_front_account');
-;           } else {
+                ;
+            } else {
                 $message = "Your current password is incorrect";
-            }   
-            
+            }
+
         }
 
         return $this->renderForm('front/account/password.html.twig', [

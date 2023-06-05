@@ -27,11 +27,11 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('app_front_main_home');
         }
 
-        if($request->get('email')){
+        if($request->get('email')) {
             $user = $userRepository->findOneByEmail($request->get('email'));
-    
-            
-            if($user){
+
+
+            if($user) {
                 $resetPassword = new ResetPassword();
                 $resetPassword->setUser($user);
                 $resetPassword->setToken(uniqid());
@@ -43,12 +43,12 @@ class ResetPasswordController extends AbstractController
                 $url = $this->generateUrl('app_update_password', ['token' => $resetPassword->getToken()]);
 
                 $content = '<a href="'.$url.'">Reset your password</a>';
-                
+
                 $mail = new Mail();
                 $mail->send($user->getEmail(), $user->getFirstname(), 'Reset your password', $content);
                 $this->addFlash('notice', 'Vous allez recevoir un mail');
 
-               return $this->redirectToRoute('app_update_password', ['token' => $resetPassword->getToken()]);
+                return $this->redirectToRoute('app_update_password', ['token' => $resetPassword->getToken()]);
             } else {
                 $this->addFlash('notice', 'This email is unknown');
             }
@@ -63,13 +63,13 @@ class ResetPasswordController extends AbstractController
     {
         $resetPassword = $resetPasswordRepository->findOneByToken($token);
 
-        if(!$resetPassword){
+        if(!$resetPassword) {
             return $this->redirectToRoute('app_reset_password');
         }
 
         $now = new DateTimeImmutable();
 
-        if($now > $resetPassword->getCreatedAt()->modify('+ 3 hour')){
+        if($now > $resetPassword->getCreatedAt()->modify('+ 3 hour')) {
 
             $this->addFlash('notice', 'Your password has expired. Please try again');
             return $this->redirectToRoute('app_reset_password');
@@ -78,22 +78,22 @@ class ResetPasswordController extends AbstractController
         $form = $this->createForm(ResetPasswordType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $user = $resetPassword->getUser();
             $newPassword = $form->get('new_password')->getData();
-                $hashedPassword = $passwordHasher->hashPassword(
-                    $user,
-                    $newPassword
-                );
-                $user->setPassword($hashedPassword);
+            $hashedPassword = $passwordHasher->hashPassword(
+                $user,
+                $newPassword
+            );
+            $user->setPassword($hashedPassword);
 
-                $userRepository->add($user, true);
-                $resetPasswordRepository->remove($resetPassword, true);
+            $userRepository->add($user, true);
+            $resetPasswordRepository->remove($resetPassword, true);
 
-                $this->addFlash('notice', 'Your password has been updated');
-                
-            
+            $this->addFlash('notice', 'Your password has been updated');
+
+
             return $this->redirectToRoute('app_login');
 
         }
@@ -102,6 +102,6 @@ class ResetPasswordController extends AbstractController
             'form' => $form->createView()
         ]);
 
-        
+
     }
 }

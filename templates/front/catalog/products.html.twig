@@ -19,7 +19,7 @@
             <div class="display">
             {% for product in products %}     
                 <div class="col-4">
-                    <a href="{{ path('app_front_product', {slug:product.slug}) }}"><img src= "{{ product.picture }}" alt=""></a>
+                    <a href="{{ path('app_front_product', {slug:product.slug}) }}"><img src= "{{ asset(product.picture) }}" alt="{{ product.name }}"></a>
                     <h4>{{ product.name }}</h4>
                     <div class="rating">
                         {% set star = product.rate %}
