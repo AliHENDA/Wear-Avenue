@@ -45,7 +45,7 @@
 					{% set product = item.inventoryItem.product %}
 					{% set size =  item.inventoryItem.size %}
 					<div class="cart-info">
-						<img src="{{ product.picture }}" width="50px" alt="">
+						<img src="{{ asset(product.picture) }}" width="50px" alt="">
 						<div>
 							<p>{{ product.name }}</p>
 							<small>Unit price :

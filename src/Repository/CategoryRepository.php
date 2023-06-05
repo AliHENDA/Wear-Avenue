@@ -3,11 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Category;
-use App\Service\MySlugger;
+use App\Service\mySlugger;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\String\Slugger\SluggerInterface;
-
 /**
  * @extends ServiceEntityRepository<Category>
  *
@@ -21,7 +19,7 @@ class CategoryRepository extends ServiceEntityRepository
 
     private $mySlugger;
 
-    public function __construct(ManagerRegistry $registry, MySlugger $mySlugger)
+    public function __construct(ManagerRegistry $registry, mySlugger $mySlugger)
     {
         $this->mySlugger = $mySlugger;
         parent::__construct($registry, Category::class);
