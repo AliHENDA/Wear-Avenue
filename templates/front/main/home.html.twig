@@ -21,22 +21,6 @@
 {% block main %}
 	<div class="group">
 		<div class="small-container">
-			<h2 class="title">Categories</h2>
-			<div class="row">
-				<div class="col-3">
-					<a href="{{ path('app_front_category_women')}}"><img src="assets/img/baner-right-image-01.jpg" alt=""></a>
-				</div>
-				<div class="col-3">
-					<a href="{{ path('app_front_category_men')}}"><img src="assets/img/baner-right-image-02.jpg" alt=""></a>
-				</div>
-				<div class="col-3">
-					<a href="{{ path('app_front_category_kids')}}"><img src="assets/img/baner-right-image-03.jpg" alt=""></a>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="small-container">
 			<h2 class="title">Best Sellers</h2>
 			<div class="row">
 				{% for bestSellersProduct in bestSellersProducts %}
@@ -152,6 +136,7 @@
 	<div class="brands">
 		<div class="small-container">
 			<div class="row">
+			<h2>Partenaires</h2>
 				<div class="col-5">
 					<img src="" alt="">
 				</div>

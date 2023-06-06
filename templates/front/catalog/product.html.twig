@@ -35,7 +35,9 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <h4>{{(product.price / 100)|number_format(2)}}</h4>
+                    {# TODO SELECT SIZE INSTEAD OF DISPLAY MULTIPLE OPTIONS#}
+                    
+                    <h4>{{(product.price / 100)|number_format(2, ",", ".")}}$</h4>
                     {% for inventory in product.inventories %}
                         <div class="row">
                         <option value=" {{ inventory.id }}">{{ inventory.size }}</option>

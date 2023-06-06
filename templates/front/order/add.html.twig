@@ -71,21 +71,20 @@
 
 		<div
 			class="text-right">
-			{#<b>Nombre de produit(s) : {{ cart.data.quantityCart }}</b><br>#}
-			<b>Frais de livraison :
+			<b>Shipping cost :
 				{{ (carrier.price / 100)|number_format(2) }}
 				$</b><br>
-			<b>Total HT :
+			<b>Subtotal :
 				{{ totalHT }}
 				$</b><br>
-			<b>TVA :
+			<b>Tax :
 				{{ totalTTC - totalHT }}
 				$</b><br>
-			<b>Total TTC :
+			<b>Total :
 				{{ totalTTC }}
 				$</b><br>
 			<a href="{{ path('app_stripe', {'reference':reference} )}}" class="btn" id="checkout-button">
-				<strong>Payer
+				<strong>Pay
 					{{ totalTTC }}
 					$</strong>
 			</a>

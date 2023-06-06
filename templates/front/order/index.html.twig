@@ -6,41 +6,42 @@
 {% block main %}
 
 	<div class="row">
-		<div class="">
-			<p>Choisissez votre préférence</p>
-			<a href="{{ path('app_front_address_add')}}" class="btn">Add a new address</a>
-			{% set formHtml  %}
-			{{ form_start(form, {action:path('app_front_order_recap')})}}
-			{{ form_end(form)}}
-			{% endset %}
+		<div class="small-container">
+			<div class="col-2">
+				<p>CChoose your preference</p>
+				<a href="{{ path('app_front_address_add')}}" class="btn">Add a new address</a>
+				{% set formHtml  %}
+				{{ form_start(form, {action:path('app_front_order_recap')})}}
+				{{ form_end(form)}}
+				{% endset %}
 
-			{{ formHtml|replace({"[br]" : "<br>"})|raw }}
+				{{ formHtml|replace({"[br]" : "<br>"})|raw }}
+			</div>
 		</div>
 
-		<div class="">
+		<div class="small-container cart-page">
 
-			<b>Récapitulatif de votre panier</b><br>
+				<b>Récapitulatif de votre panier</b><br>
 
-			{% for item in cart %}
-				{% set product = item.inventoryItem.product %}
-				{% set size =  item.inventoryItem.size %}
+				{% for item in cart %}
+					{% set product = item.inventoryItem.product %}
+					{% set size =  item.inventoryItem.size %}
 
-				<div class="cart-info">
-					<img src="{{ product.picture }}" width="50px" alt="">
-					<div>
-						<p>{{ product.name }}</p>
-						<small>Unit price :
-							{{ (product.price / 100)|number_format(2) }}
-							$</small>
-						<br>
-						<small>Size :
-							{{ size }}</small>
+					<div class="cart-info">
+						<a href="{{ path('app_front_product', {slug:product.slug}) }}"><img src="{{ product.picture }}" alt="{{ product.name }}" width="80px"></a>
+						<div>
+							<p>{{ product.name }}</p>
+							<small>Unit price :
+								{{ (product.price / 100)|number_format(2) }}$</small>
+							<br>
+							<small>Size :
+								{{ size }}</small>
+							<small>Quantity :
+								{{ item.quantity }}</small>
+						</div>
 					</div>
-				</div>
-
-			{% endfor %}
+				{% endfor %}
 
 		</div>
-
 	</div>
 {% endblock %}

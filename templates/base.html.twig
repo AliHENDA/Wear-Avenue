@@ -14,7 +14,7 @@
             <div class="container">
                 <div class="navbar">
                     <div class="logo">
-                        <img src="{{ asset('assets/img/logo.png') }}" alt="" width="125px" />
+                        <a href="{{ path('app_front_main_home') }}"><img src="{{ asset('assets/img/logo1.png') }}" alt="" width="250px"/></a>
                     </div>
                     <nav>
                         <ul id="MenuItems">
@@ -36,6 +36,9 @@
                 </div>
 
                 {% if (is_granted("ROLE_MANAGER") ) %}
+
+                {# TEMPORARY SUB-NAV - TODO REDIRECTION TO ADMIN PAGE WHEN MANAGER/ADMIN CONNECTED #}
+                
                 <nav class="sub-nav">
                     <ul id="MenuItems">
                         <a href="{{ path('app_back_product_index')}}"><li>Products</li></a>
@@ -60,8 +63,7 @@
                         <p>Download App for Android and IOS mobile phone</p>
                         <div class="app-logo">
                             <img src="{{ asset('assets/img/pngwing.com (1).png') }}" alt="">
-                            <img src="{{ asset('assets/img/pngwing3.com.png') }}" alt="">
-                            
+                            <img src="{{ asset('assets/img/pngwing3.com.png') }}" alt="">               
                         </div>
                     </div>
                     <div class="footer-col-2">
@@ -80,18 +82,17 @@
                     <div class="footer-col-4">
                         <h3>Follow Us</h3>
                         <ul>
-                            <li><i class="bi bi-facebook"></i> Facebook</li>
-                            <li><i class="bi bi-twitter"></i> Twitter</li>
                             <li><i class="bi bi-instagram"></i> Instagram</li>
+                            <li><i class="bi bi-facebook"></i> Facebook</li>
                             <li><i class="bi bi-linkedin"></i> Linkedin</li>
+                            <li><i class="bi bi-twitter"></i> Twitter</li>
                         </ul>
                     </div>
                 </div>
                 <hr>
-                <p class="copyright">Copyright 2022 - Sapes Avenue</p>
+                <p class="copyright">Copyright 2023 - Wear Avenue</p>
             </div>
-        </div>
-    </footer>
+        </footer>
         <script src="{{ asset('assets/js/app.js') }}"></script>
     
     </body>

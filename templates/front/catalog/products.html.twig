@@ -36,7 +36,7 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <p>{{ (product.price / 100)|number_format(2)}}$</p>
+                    <p>{{ (product.price / 100)|number_format(2,",",".")}}$</p>
                 </div>
             {% endfor %}
         </div>
