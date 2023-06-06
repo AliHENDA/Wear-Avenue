@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Product - Sapes Avenue{% endblock %}
+{% block title %}Edit Product - Wear Avenue{% endblock %}
 
 
 {% block main %}
@@ -9,7 +9,7 @@
 
     {{ include('back/product/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_back_product_index') }}">Back to list</a>
+    <a href="{{ path('app_back_product_index') }}" class="btn btn-secondary mt-1">Back to list</a>
 
     {{ include('back/product/_delete_form.html.twig') }}
     </div>

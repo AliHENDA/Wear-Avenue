@@ -1,13 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'back/layout_back.html.twig' %}
 
-{% block title %}All Products - Sapes Avenue{% endblock %}
+{% block title %}All Products - Wear Avenue{% endblock %}
 
-{% block main %}
+{% block body %}
     <h1>All Products</h1>
 
-    <table class="table-back">
+    <a href="{{ path('app_back_product_new') }}" class= "btn btn-success btn-new">Add new product</a>
+    <table class="table mt-4 table-bordered table-hover">
         <thead>
-            <tr>
+            <tr class="bg-primary">
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
@@ -31,12 +32,12 @@
                 <td>{{ product.gender }}</td>
                 <td>{{ product.color }}</td>
                 <td>{{ product.rate }}</td>
-                <td>{{ product.price }}</td>
+                <td>{{ (product.price / 100)|number_format(2) }}</td>
                 <td>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ product.bestSellersOrder }}</td>
                 <td>
-                    <a href="{{ path('app_back_product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('app_back_product_edit', {'id': product.id}) }}">edit</a>
+                    <a href="{{ path('app_back_product_show', {'id': product.id}) }}" class="btn btn-info">Show</a>
+                    <a href="{{ path('app_back_product_edit', {'id': product.id}) }}" class="btn btn-warning">Edit</a>
                 </td>
             </tr>
         {% else %}
@@ -46,6 +47,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_back_product_new') }}">Create new</a>
 {% endblock %}

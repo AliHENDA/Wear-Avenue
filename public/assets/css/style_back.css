@@ -1,0 +1,18 @@
+html {
+    overflow-y: scroll;
+}
+
+
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.btn-new{
+    width: 10%;
+}
+
+td{
+    max-width: 200px;
+}

@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'back/layout_back.html.twig' %}
 
-{% block title %}Edit Category - Sapes Avenue{% endblock %}
+{% block title %}Edit Category - Wear Avenue{% endblock %}
 
-{% block main %}
-    <h1>Edit Category</h1>
+{% block body %}
+	<h1>Edit Category</h1>
 
-    {{ include('back/category/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('back/category/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_back_category_index') }}">Back to list</a>
+	<a href="{{ path('app_back_category_index') }}" class="btn btn-secondary mt-1">Back to list</a>
 
-    {{ include('back/category/_delete_form.html.twig') }}
+	{{ include('back/category/_delete_form.html.twig') }}
 {% endblock %}
