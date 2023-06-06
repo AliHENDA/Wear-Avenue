@@ -29,6 +29,7 @@ class RegisterController extends AbstractController
             );
 
             $user->setPassword($hashedPassword);
+            $user->setRoles(['ROLE_USER']);
 
             $userRepository->add($user, true);
 
