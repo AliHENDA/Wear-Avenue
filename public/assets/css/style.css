@@ -11,8 +11,6 @@ body {
     font-weight: 400;
     background-color: #fff;
     font-size: 1rem;
-    min-height: 170vh;
-    position: relative;
 }
 
 .navbar {
@@ -252,9 +250,6 @@ small{
     color: #8a8a8a;
     font-size: 14px;
     padding: 60px 0 20px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
 }
 
 .footer p {
